@@ -3,80 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
   <title>New Tab</title>
   <style>
-    * { box-sizing: border-box; }
+    :root {
+      --bg: #0b1220;
+      --bg-elevated: rgba(15, 23, 42, 0.95);
+      --panel-border: rgba(148, 163, 184, 0.2);
+      --text: #e5eefb;
+      --muted: #94a3b8;
+      --link: #cbd5e1;
+      --primary: #3b82f6;
+      --primary-strong: #2563eb;
+      --accent: #7dd3fc;
+      --shadow: rgba(59, 130, 246, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: #0b1220;
-      color: #e5eefb;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
     }
 
     header {
-      padding: 1rem 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(15, 23, 42, 0.9);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
       position: sticky;
       top: 0;
-      backdrop-filter: blur(10px);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 8%;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--panel-border);
     }
 
     .logo {
       font-size: 1.25rem;
-      font-weight: bold;
-      color: #7dd3fc;
+      font-weight: 700;
+      color: var(--accent);
     }
 
     nav {
       display: flex;
       align-items: center;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     nav a {
-      color: #cbd5e1;
+      color: var(--link);
       text-decoration: none;
-      transition: color 0.2s ease;
+      transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    nav a:hover {
-      color: #ffffff;
+    nav a:hover,
+    nav a:focus-visible {
+      color: #fff;
     }
 
-    .nav-button {
+    .nav-button,
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.6rem 1rem;
-      border: none;
+      padding: 0.75rem 1.2rem;
       border-radius: 999px;
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      background: linear-gradient(135deg, var(--primary), var(--primary-strong));
       color: #fff;
-      font-weight: bold;
+      font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 10px 25px var(--shadow);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
     }
 
-    .nav-button:hover {
+    .nav-button:hover,
+    .nav-button:focus-visible,
+    .button:hover,
+    .button:focus-visible {
       transform: translateY(-1px);
       box-shadow: 0 12px 30px rgba(59, 130, 246, 0.45);
     }
 
     .hero {
-      min-height: 75vh;
-      padding: 4rem 8%;
       display: grid;
       place-items: center;
+      min-height: 75vh;
+      padding: 4rem 8%;
       text-align: center;
       background:
         radial-gradient(circle at top, rgba(59, 130, 246, 0.25), transparent 35%),
-        #0b1220;
+        var(--bg);
     }
 
     .hero-content {
@@ -92,35 +124,18 @@
     }
 
     .hero p {
-      margin: 0 auto 2rem;
       max-width: 620px;
+      margin: 0 auto 2rem;
       font-size: 1.15rem;
       line-height: 1.7;
-      color: #94a3b8;
-    }
-
-    .button {
-      display: inline-block;
-      padding: 0.9rem 1.4rem;
-      border-radius: 0.5rem;
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.45);
+      color: var(--muted);
     }
 
     footer {
       padding: 1.5rem;
       text-align: center;
-      color: #94a3b8;
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      color: var(--muted);
+      border-top: 1px solid var(--panel-border);
       background: #0f172a;
     }
 
@@ -132,8 +147,20 @@
         padding-bottom: 1.25rem;
       }
 
-      nav a {
-        margin: 0 0.75rem;
+      nav {
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
       }
     }
   </style>
@@ -141,7 +168,7 @@
 <body>
   <header>
     <div class="logo">Tomato Games</div>
-    <nav>
+    <nav aria-label="Main navigation">
       <a href="#about">Games</a>
       <a class="nav-button" href="EaglercraftX_1.8_u53_Offline_Signed.html">Play Eaglercraft</a>
       <a href="#contact">Other Stuff</a>
@@ -151,10 +178,8 @@
   <main class="hero" id="about">
     <div class="hero-content">
       <h1>Welcome</h1>
-      <p>
-        Website is under development
-      </p>
-      <a class="button" href="#contact">Play</a>
+      <p>Website is under development</p>
+      <a class="button" href="EaglercraftX_1.8_u53_Offline_Signed.html">Play</a>
     </div>
   </main>
 
