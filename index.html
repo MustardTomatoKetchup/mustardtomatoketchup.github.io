@@ -32,8 +32,13 @@
       color: #7dd3fc;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     nav a {
-      margin-left: 1.5rem;
       color: #cbd5e1;
       text-decoration: none;
       transition: color 0.2s ease;
@@ -41,6 +46,26 @@
 
     nav a:hover {
       color: #ffffff;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(59, 130, 246, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(59, 130, 246, 0.45);
     }
 
     .hero {
@@ -118,20 +143,21 @@
     <div class="logo">Tomato Games</div>
     <nav>
       <a href="#about">Games</a>
+      <a class="nav-button" href="#contact">Play</a>
       <a href="#contact">Other Stuff</a>
     </nav>
   </header>
 
   <main class="hero" id="about">
     <div class="hero-content">
-      <h1>Welcome</h1></h1>
+      <h1>Welcome</h1>
       <p>
         Website is under development
       </p>
-      <a class="button" href="#contact">Play<a>
+      <a class="button" href="#contact">Play</a>
     </div>
   </main>
 
-  <footer id="contact">Developed by MustardTomatoKetchup.<footer>
+  <footer id="contact">Developed by MustardTomatoKetchup.</footer>
 </body>
 </html>
