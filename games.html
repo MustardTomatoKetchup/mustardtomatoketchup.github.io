@@ -43,7 +43,7 @@
     .intro { margin-bottom: 2rem; text-align: center; }
     h1 { margin: 0 0 0.75rem; font-size: clamp(2.5rem, 6vw, 4rem); color: #f8fafc; }
     .intro p { margin: 0; color: var(--muted); font-size: 1.1rem; }
-    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; }
+    .games-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
     .game-card {
       display: flex;
       min-height: 240px;
@@ -71,9 +71,13 @@
     }
     .coming-soon { color: var(--accent); font-size: 0.9rem; font-weight: 700; }
     footer { padding: 1.5rem; text-align: center; color: var(--muted); border-top: 1px solid var(--panel-border); }
+    @media (max-width: 800px) {
+      .games-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 600px) {
       header { flex-direction: column; gap: 0.75rem; }
       main { padding: 3rem 0; }
+      .games-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -97,6 +101,11 @@
         <h2>Eaglercraft</h2>
         <p>Jump into the browser-based Minecraft experience.</p>
         <a class="play-button" href="EaglercraftX_1.8_u53_Offline_Signed.html">Play Eaglercraft</a>
+      </article>
+      <article class="game-card">
+        <h2>Retro Bowl</h2>
+        <p>Take the field and lead your team to victory.</p>
+        <a class="play-button" href="retro-bowl.html">Play Retro Bowl</a>
       </article>
       <article class="game-card">
         <h2>Tiny Fishing</h2>
